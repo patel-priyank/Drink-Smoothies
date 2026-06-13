@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
+import Loader from '../components/Loader';
+
 const Update = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -78,7 +80,7 @@ const Update = () => {
 
   return (
     <div className="page update">
-      {loading && <p className="message">Loading...</p>}
+      {loading && <Loader />}
 
       {!loading && error && <p className="error message">{error}</p>}
 

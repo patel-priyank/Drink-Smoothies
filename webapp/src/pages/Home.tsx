@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import Loader from '../components/Loader';
 import SmoothieCard from '../components/SmoothieCard';
 
 const Home = () => {
@@ -90,7 +91,7 @@ const Home = () => {
           </div>
         </div>
 
-        {loading && <p className="message">Loading...</p>}
+        {loading && <Loader />}
 
         {error && <p className="error message">{error}</p>}
 

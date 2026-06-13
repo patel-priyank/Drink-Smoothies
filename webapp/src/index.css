@@ -1,0 +1,265 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+  --primary: #0b8199;
+  --secondary: #8b3399;
+  --error: #f71735;
+}
+
+* {
+  font-family: 'Inter', sans-serif;
+  -webkit-tap-highlight-color: transparent;
+
+  &:focus-visible {
+    outline: 2px solid #57bbf4;
+    outline-offset: 1px;
+  }
+}
+
+body {
+  margin: 0;
+  color: #333333;
+  background: #f2f2f2;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background: var(--primary);
+  padding: 18px 24px;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  a {
+    text-decoration: none;
+    border-radius: 4px;
+
+    h1 {
+      margin: 0;
+      color: #ffffff;
+      font-size: 1.75rem;
+    }
+  }
+
+  .links {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    a {
+      color: color-mix(in srgb, var(--primary), #000000 25%);
+      background: color-mix(in srgb, var(--primary), #ffffff 75%);
+      padding: 6px 12px;
+      display: inline-block;
+      border-radius: 4px;
+      text-decoration: none;
+    }
+  }
+}
+
+.page {
+  max-width: 1200px;
+  margin: var(--nav-height) auto 24px;
+  padding: 24px;
+}
+
+.message {
+  margin-block: 32px 0;
+}
+
+.error {
+  color: var(--error);
+}
+
+.order-by {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  p {
+    margin: 0;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+
+    button {
+      background: transparent;
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      padding: 4px 6px 4px 8px;
+      border-radius: 4px;
+      font-size: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+
+      &.active {
+        background: var(--primary);
+        color: #ffffff;
+      }
+
+      i {
+        font-size: inherit;
+      }
+    }
+  }
+}
+
+.smoothie-grid {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: 32px;
+
+  .smoothie-card {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+    padding: 24px;
+    background: #ffffff;
+    box-sizing: border-box;
+    border-radius: 8px;
+    position: relative;
+  }
+
+  h3 {
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .footer {
+    margin-top: auto;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: space-between;
+
+    .created-at {
+      color: #bababa;
+      font-size: 0.9rem;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 8px;
+
+      a,
+      button {
+        border-radius: 4px;
+      }
+
+      button {
+        cursor: pointer;
+        border: 0;
+        background: none;
+        padding: 0;
+        font-size: inherit;
+      }
+
+      i {
+        font-size: inherit;
+        padding: 8px;
+        border-radius: 4px;
+
+        &.edit {
+          color: var(--primary);
+          background: hsl(from var(--primary) h s l / 0.125);
+        }
+
+        &.delete {
+          color: var(--error);
+          background: hsl(from var(--error) h s l / 0.125);
+        }
+      }
+    }
+  }
+
+  .rating {
+    position: absolute;
+    top: 0;
+    right: 24px;
+    transform: translate(0, -50%);
+    background: var(--secondary);
+    color: #ffffff;
+    border-radius: 6px;
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+  }
+}
+
+form {
+  background: #ffffff;
+  padding: 24px;
+  max-width: 480px;
+  margin: 0 auto;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+
+  .form-control {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+      border: 1px solid #cccccc;
+      border-radius: 4px;
+      font-size: inherit;
+    }
+
+    textarea {
+      resize: none;
+      height: 10rem;
+    }
+
+    span {
+      color: #bababa;
+      font-size: 0.9rem;
+      font-variant-numeric: tabular-nums;
+    }
+  }
+
+  button {
+    background: var(--primary);
+    color: #ffffff;
+    border: 0;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: inherit;
+    cursor: pointer;
+    margin-top: 8px;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  .error {
+    margin-block: 8px 0;
+  }
+}

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 interface SmoothieCardProps {
@@ -6,11 +7,15 @@ interface SmoothieCardProps {
 }
 
 const SmoothieCard = ({ smoothie, onDelete }: SmoothieCardProps) => {
+  const [deleting, setDeleting] = useState<boolean>(false);
+
   const handleDelete = async () => {
     const confirmDeletion = window.confirm(`Delete ${smoothie.title}?`);
 
     if (confirmDeletion) {
       try {
+        setDeleting(true);
+
         const res = await fetch(`/api/smoothies/${smoothie.id}`, {
           method: 'DELETE'
         });
@@ -22,12 +27,14 @@ const SmoothieCard = ({ smoothie, onDelete }: SmoothieCardProps) => {
         onDelete(smoothie.id);
       } catch {
         alert(`Could not delete ${smoothie.title}.`);
+      } finally {
+        setDeleting(false);
       }
     }
   };
 
   return (
-    <div className="smoothie-card">
+    <div className={`smoothie-card ${deleting ? 'deleting' : ''}`}>
       <h3>{smoothie.title}</h3>
 
       <p>{smoothie.method}</p>

@@ -132,6 +132,11 @@ nav {
     box-sizing: border-box;
     border-radius: 8px;
     position: relative;
+
+    &.deleting {
+      opacity: 0.5;
+      pointer-events: none;
+    }
   }
 
   h3 {

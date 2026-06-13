@@ -52,14 +52,17 @@ const SmoothieCard = ({ smoothie, onDelete }: SmoothieCardProps) => {
         </p>
 
         <div className="buttons">
-          <Link to={'/' + smoothie.id} title="Edit">
+          <Link
+            to={'/' + smoothie.id}
+            title="Edit"
+            tabIndex={deleting ? -1 : undefined}
+            onClick={(e: any) => deleting && e.preventDefault()}
+          >
             <i className="material-icons edit">edit</i>
           </Link>
 
-          <button title="Delete">
-            <i className="material-icons delete" onClick={handleDelete}>
-              delete
-            </i>
+          <button title="Delete" disabled={deleting} onClick={handleDelete}>
+            <i className="material-icons delete">delete</i>
           </button>
         </div>
       </div>

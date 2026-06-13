@@ -18,6 +18,8 @@ const Home = () => {
   const [orderByAsc, setOrderByAsc] = useState<boolean>(false);
 
   useEffect(() => {
+    const controller = new AbortController();
+
     const fetchSmoothies = async () => {
       try {
         setLoading(true);
@@ -25,7 +27,9 @@ const Home = () => {
         setSmoothies(null);
         setError(null);
 
-        const res = await fetch(`/api/smoothies?orderBy=${orderBy}&ascending=${orderByAsc}`);
+        const res = await fetch(`/api/smoothies?orderBy=${orderBy}&ascending=${orderByAsc}`, {
+          signal: controller.signal
+        });
 
         if (!res.ok) {
           throw new Error();
@@ -35,15 +39,21 @@ const Home = () => {
 
         setSmoothies(data);
         setError(null);
-      } catch {
+      } catch (err) {
+        if ((err as Error).name === 'AbortError') return;
+
         setSmoothies(null);
         setError('Could not fetch smoothies.');
       } finally {
-        setLoading(false);
+        if (!controller.signal.aborted) {
+          setLoading(false);
+        }
       }
     };
 
     fetchSmoothies();
+
+    return () => controller.abort();
   }, [orderBy, orderByAsc]);
 
   const handleOrderBy = (field: string) => {

@@ -94,8 +94,8 @@ const Update = () => {
 
           <div className="form-control">
             <label htmlFor="method">Method</label>
-            <textarea id="method" maxLength={250} value={method} onChange={e => setMethod(e.target.value)} />
-            <span>{method.length}/250</span>
+            <textarea id="method" maxLength={120} value={method} onChange={e => setMethod(e.target.value)} />
+            <span>{method.length}/120</span>
           </div>
 
           <div className="form-control">

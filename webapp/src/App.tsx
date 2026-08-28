@@ -37,13 +37,13 @@ const App = () => {
   return (
     <BrowserRouter>
       <nav ref={navRef}>
-        <Link to="/">
-          <h1>Drink Smoothies</h1>
-        </Link>
+        <h1>Drink Smoothies</h1>
 
         <div className="links">
           <Link to="/">Smoothies</Link>
-          <Link to="/create">Create New</Link>
+          <Link to="/create">
+            <i className="material-icons">add</i>
+          </Link>
         </div>
       </nav>
 
